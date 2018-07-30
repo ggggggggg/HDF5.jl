@@ -58,10 +58,10 @@ using Compat.String
     empty_string = ""
     write(f, "empty_string", empty_string)
     # Empty array of strings
-    empty_string_array = Compat.ASCIIString[]
+    empty_string_array = String[]
     write(f, "empty_string_array", empty_string_array)
     # Array of empty string
-    empty_array_of_strings = Compat.ASCIIString[""]
+    empty_array_of_strings = String[""]
     write(f, "empty_array_of_strings", empty_array_of_strings)
     # Attributes
     species = [["N", "C"]; ["A", "B"]]
@@ -256,9 +256,9 @@ using Compat.String
         end
     end
     fid = h5open(fn, "r")
-    @test names(fid) == Compat.ASCIIString["mygroup"]
+    @test names(fid) == String["mygroup"]
     g = fid["mygroup"]
-    @test names(g) == Compat.ASCIIString["x"]
+    @test names(g) == String["x"]
     close(g)
     close(fid)
 
@@ -274,8 +274,8 @@ using Compat.String
     end
     @test length(readdir(tmpdir)) == 1
     h5open(outfile, "r") do fid
-        @test names(fid) == Compat.ASCIIString["mygroup"]
-        @test names(fid["mygroup"]) == Compat.ASCIIString["x"]
+        @test names(fid) == String["mygroup"]
+        @test names(fid["mygroup"]) == String["x"]
     end
 
     # fail to overwrite
@@ -287,8 +287,8 @@ using Compat.String
     end
     @test length(readdir(tmpdir)) == 1
     h5open(outfile, "r") do fid
-        @test names(fid) == Compat.ASCIIString["mygroup"]
-        @test names(fid["mygroup"]) == Compat.ASCIIString["x"]
+        @test names(fid) == String["mygroup"]
+        @test names(fid["mygroup"]) == String["x"]
     end
 
     # overwrite
@@ -299,8 +299,8 @@ using Compat.String
     end
     @test length(readdir(tmpdir)) == 1
     h5open(outfile, "r") do fid
-        @test names(fid) == Compat.ASCIIString["mygroup"]
-        @test names(fid["mygroup"]) == Compat.ASCIIString["y"]
+        @test names(fid) == String["mygroup"]
+        @test names(fid["mygroup"]) == String["y"]
     end
 
     rm(tmpdir, recursive=true)
